@@ -2,10 +2,12 @@ import React from "react";
 import logo from "../assets/logo.svg";
 import norton from "../assets/norton.png";
 import McAfee from "../assets/McAfee.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const Footer: React.FC = () => {
   return (
-    <>
+    <div className="bg-gray-300">
       <div className="flex flex-auto flex-wrap xl:justify-center  p-[15px] w-[100%] ">
         <div className="card-1  md:w-[100%] lg:w-[50%] xl:w-[23%] p-[15px] ">
           <div>
@@ -21,8 +23,11 @@ const Footer: React.FC = () => {
               Silicon Valley Neeladri Road, Doddathogur Village, Begur Hobli,
               Electronic City, Phase 1, Bengaluru, Karnataka – 560 100
             </h2>
-            <button className="border bg-orange-500 hover:bg-orange-600 xs:p-[15px] sm:p-[15px] md:p-[10px] rounded-xl text-white">
-              {/* <FontAwesomeIcon icon="fa-solid fa-location-dot" /> */}
+            <button className="border text-2xl bg-orange-500 hover:bg-orange-600 xs:p-[15px] sm:p-[15px] md:p-[10px] rounded-xl text-white">
+              <FontAwesomeIcon
+                className="text-2xl p-[2px]"
+                icon={faLocationDot}
+              />
               View On Map
             </button>
           </div>
@@ -93,10 +98,12 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="indent-56 text-gray-500 h-[32px] bg-white-700 flex item-center">
-        @2022 E-Cart. All Right Reserved
+      <div className="indent-56 text-gray-600 bg-white-700 flex item-center">
+        <p className="text-2xl p-[15px]">
+          &copy;2022 E-Cart. All Right Reserved
+        </p>
       </div>
-    </>
+    </div>
   );
 };
 
