@@ -2,7 +2,7 @@ import { useReactiveVar } from "@apollo/client";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { productData } from "../cache";
-import { Data, Product, productQueryRes } from "../types/ProductTypes";
+import { Product, productQueryRes } from "../types/ProductTypes";
 import Spinner from "../utils/Spinner";
 
 // type setproducts{
@@ -98,15 +98,15 @@ const Home: React.FC = () => {
         >
           Tab
         </button>
-        <button
+        {/* <button
           className="text-xl active:text-orange-500"
           // onClick={handleclick5}
         >
           Office Appliance
-        </button>
+        </button> */}
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 justify-items-center mt-4 gap-4 p-[20px]">
-        {products.map((product: Product) => {
+        {data?.getAllProducts.map((product: Product) => {
           return (
             <div
               className="card w-[280px] h-[380px] rounded-xl flex flex-col gap-2 items-center bg-white shadow-md shadow-gray-400"
