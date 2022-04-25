@@ -1,23 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-// import Layout from "./components/Layout";
+import Layout from "./components/Layout";
 import Auth from "./pages/Auth";
-// import Home from "./pages/Home";
-import routes from "./Routes";
+import Home from "./pages/Home";
+import Product from "./pages/Product";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      {/* <Routes>
-        
-      </Routes> */}
       <Routes>
-        {/* <Layout> */}
         <Route path="/" element={<Auth />} />
-        <Route path="/home" element={routes["home"]} />
-        {/* <Route path="/product/:id" element={} /> */}
-        {/* </Layout> */}
+        <Route element={<Layout />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
+        </Route>
       </Routes>
     </div>
   );

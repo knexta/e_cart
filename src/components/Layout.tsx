@@ -1,15 +1,13 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 
-interface Props {
-  children: any;
-}
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: React.FC = () => {
   return (
     <div>
       <Header />
-      <div>{children}</div>
+      <Outlet />
       <Footer />
     </div>
   );

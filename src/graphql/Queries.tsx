@@ -13,3 +13,25 @@ export const getProducts = gql`
     }
   }
 `;
+
+export const getProductsbyId = gql`
+  query GetProduct($id: Int!) {
+    getProduct(id: $id) {
+      id
+      productName
+      price
+      category
+      discountPrice
+      description
+      image
+      overview
+      stocks
+      similarProducts {
+        id
+        productName
+        price
+        discountPrice
+      }
+    }
+  }
+`;
