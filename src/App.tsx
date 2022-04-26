@@ -4,7 +4,7 @@ import "./App.css";
 import Layout from "./components/Layout";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
-import Product from "./pages/Product";
+import Products from "./pages/Product";
 
 const App: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Auth />} />
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/product/:id" element={<Product />} />
+          <Route path="/product/:id" element={<Products />} />
         </Route>
       </Routes>
     </div>

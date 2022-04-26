@@ -10,10 +10,12 @@ import { useQuery } from "@apollo/client";
 import { getProducts } from "../graphql/Queries";
 import { productData } from "../cache";
 import { Data } from "../types/ProductTypes";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const productRes = useQuery<Data>(getProducts);
   const [show, setshow] = useState(false);
+  const navigate = useNavigate();
   const handleclick = () => {
     setshow(!show);
   };
@@ -43,7 +45,10 @@ const Header: React.FC = () => {
         </div>
         <div className="hidden sm:block">
           <div className="flex align-center gap-4    ">
-            <button className="text-xl text-orange-500 hover:text-orange-600">
+            <button
+              className="text-xl text-orange-500 hover:text-orange-600"
+              onClick={() => navigate("/home")}
+            >
               Home
             </button>
             <div className="dropdown">

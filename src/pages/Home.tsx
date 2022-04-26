@@ -1,17 +1,15 @@
 import { useReactiveVar } from "@apollo/client";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { productData } from "../cache";
 import { Product, productQueryRes } from "../types/ProductTypes";
 import Spinner from "../utils/Spinner";
+import Card from "../components/Card";
 
-// type setproducts{
-
-// }
 const Home: React.FC = () => {
   // const { loading, error, data } = useQuery<Data>(getProducts);
   const { loading, error, data } = useReactiveVar<productQueryRes>(productData);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [products, setproducts] = useState<Product[]>();
   function getProducts() {
     return setproducts(data?.getAllProducts);
@@ -21,33 +19,33 @@ const Home: React.FC = () => {
   if (error) return <h1>`Error! ${error.message}`</h1>;
   console.log(products);
   const handleclick = () => {
-    getProducts();
+    // getProducts();
     const desktop = products?.filter(
       (product) => product.category === "Desktops"
     );
     setproducts(desktop);
   };
   const handleclick1 = () => {
-    getProducts();
+    // getProducts();
     const Laptop = products?.filter(
       (product) => product.category === "Laptops"
     );
     setproducts(Laptop);
   };
   const handleclick2 = () => {
-    getProducts();
+    // getProducts();
     const monitor = products?.filter(
       (product) => product.category === "monitors"
     );
     setproducts(monitor);
   };
   const handleclick3 = () => {
-    getProducts();
+    // getProducts();
     const tv = products?.filter((product) => product.category === "Tv");
     setproducts(tv);
   };
   const handleclick4 = () => {
-    getProducts();
+    // getProducts();
     const tab = products?.filter((product) => product.category === "Tab");
     setproducts(tab);
   };
@@ -106,37 +104,9 @@ const Home: React.FC = () => {
         </button> */}
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 justify-items-center mt-4 gap-4 p-[20px]">
-        {data?.getAllProducts.map((product: Product) => {
-          return (
-            <div
-              className="card w-[280px] h-[380px] rounded-xl flex flex-col gap-2 items-center bg-white shadow-md shadow-gray-400"
-              key={product.id}
-              onClick={() => {
-                navigate(`/product/${product.id}`);
-              }}
-            >
-              <div className="p-[10px] relative">
-                <img
-                  src={product.image}
-                  alt={product.productName}
-                  height="130px"
-                  width="230px"
-                />
-                {/* <button></button> */}
-              </div>
-              <div>
-                <p className="text-2xl text-black text-center">
-                  {product.productName}
-                </p>
-                <p className="text-2xl text-black text-center p-[10px]">
-                  <span className=" line-through">
-                    ${product.price + product.discountPrice}
-                  </span>
-                  &nbsp; ${product.price}
-                </p>
-              </div>
-            </div>
-          );
+        {/* {data?.getAllProducts.map((product: Product) => { */}
+        {products?.map((product: Product) => {
+          return <Card product={product} />;
         })}
       </div>
     </div>

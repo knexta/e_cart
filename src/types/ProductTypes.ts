@@ -41,7 +41,7 @@ export interface oneProduct {
 }
 
 export interface oneData {
-  getProduct: oneProduct;
+  getProduct: oneProduct[];
 }
 
 export type idparams = {
