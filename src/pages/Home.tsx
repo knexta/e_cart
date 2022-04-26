@@ -15,47 +15,36 @@ const Home: React.FC = () => {
     return setproducts(data?.getAllProducts);
   }
   useEffect(getProducts, [data]);
+  const allProduct = data?.getAllProducts;
   if (loading) return <Spinner />;
   if (error) return <h1>`Error! ${error.message}`</h1>;
   console.log(products);
   const handleclick = () => {
-    // getProducts();
-    const desktop = products?.filter(
+    const desktop = allProduct?.filter(
       (product) => product.category === "Desktops"
     );
     setproducts(desktop);
   };
   const handleclick1 = () => {
-    // getProducts();
-    const Laptop = products?.filter(
+    const Laptop = allProduct?.filter(
       (product) => product.category === "Laptops"
     );
     setproducts(Laptop);
   };
   const handleclick2 = () => {
-    // getProducts();
-    const monitor = products?.filter(
+    const monitor = allProduct?.filter(
       (product) => product.category === "monitors"
     );
     setproducts(monitor);
   };
   const handleclick3 = () => {
-    // getProducts();
-    const tv = products?.filter((product) => product.category === "Tv");
+    const tv = allProduct?.filter((product) => product.category === "Tv");
     setproducts(tv);
   };
   const handleclick4 = () => {
-    // getProducts();
-    const tab = products?.filter((product) => product.category === "Tab");
+    const tab = allProduct?.filter((product) => product.category === "Tab");
     setproducts(tab);
   };
-  // const handleclick5 = () => {
-  //   getProducts();
-  //   const desktop = products?.filter(
-  //     (product) => product.category === "Laptops"
-  //   );
-  //   console.log(desktop);
-  // };
   return (
     <div>
       <h1 className="text-3xl font bold ml-[20px]">Categories</h1>
@@ -78,6 +67,7 @@ const Home: React.FC = () => {
         >
           Laptops
         </button>
+
         <button
           className="text-2xl active:text-orange-500"
           onClick={handleclick2}
@@ -96,15 +86,8 @@ const Home: React.FC = () => {
         >
           Tab
         </button>
-        {/* <button
-          className="text-xl active:text-orange-500"
-          // onClick={handleclick5}
-        >
-          Office Appliance
-        </button> */}
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 justify-items-center mt-4 gap-4 p-[20px]">
-        {/* {data?.getAllProducts.map((product: Product) => { */}
         {products?.map((product: Product) => {
           return <Card product={product} />;
         })}
@@ -114,3 +97,10 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+// function isActive() {
+//   let activebutton = document.getElementsByTagName("button");
+//   const container = document.getElementsByTagName("ul");
+//   // container.cla.add("active");
+//   container.addClass("active").siblings.removeClass("active");
+// }
