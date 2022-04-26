@@ -31,6 +31,11 @@ export const getProductsbyId = gql`
         productName
         price
         discountPrice
+        description
+        image
+        overview
+        stocks
+        category
       }
     }
   }

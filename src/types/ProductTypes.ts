@@ -11,8 +11,8 @@ export interface Product {
   category: string;
   discountPrice: string;
   image: string;
-  description: string | null;
-  overview: string | null;
+  description: string[] | null;
+  overview: string[] | null;
   stocks: string;
 }
 
@@ -29,15 +29,22 @@ export interface oneProduct {
   category: string;
   discountPrice: string;
   image: string;
-  description: string | null;
-  overview: string | null;
+  description: string[] | null;
+  overview: string[] | null;
   stocks: string;
-  similarProducts: {
-    id: number;
-    productName: string;
-    price: string;
-    discountPrice: string;
-  };
+  similarProducts: [
+    {
+      id: number;
+      productName: string;
+      price: string;
+      category: string;
+      discountPrice: string;
+      image: string;
+      description: string[] | null;
+      overview: string[] | null;
+      stocks: string;
+    }
+  ];
 }
 
 export interface oneData {

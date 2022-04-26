@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 const Header: React.FC = () => {
   const productRes = useQuery<Data>(getProducts);
   const [show, setshow] = useState(false);
+  const [display, setdisplay] = useState(false);
+  const [display1, setdisplay1] = useState(false);
   const navigate = useNavigate();
   const handleclick = () => {
     setshow(!show);
@@ -23,7 +25,12 @@ const Header: React.FC = () => {
   useEffect(() => {
     productData(productRes);
   }, [productRes]);
-
+  const handledis1 = () => {
+    setdisplay(!display);
+  };
+  const handledis2 = () => {
+    setdisplay1(!display1);
+  };
   return (
     <>
       <div className="bg-black flex align-center p-[1px] sm:p-[15px] justify-evenly items-center">
@@ -71,7 +78,7 @@ const Header: React.FC = () => {
               </div>
             </div>
             <div className="dropdown1">
-              <button className="text-xl text-orange-500 ">
+              <button className="text-2xl text-orange-500 ">
                 Shop <FontAwesomeIcon icon={faCaretDown} />
               </button>
               <div className=" dropdown-content1 ">
@@ -86,14 +93,20 @@ const Header: React.FC = () => {
           </div>
         </div>
         <div className="flex align-center gap-2">
-          <button className="ml-auto text-orange-500 hover:text-orange-600">
+          <button
+            className="ml-auto text-orange-500 hover:text-orange-600"
+            onClick={() => navigate("/whishlist")}
+          >
             <FontAwesomeIcon
               icon={faHeart}
               // color="#ed7133"
               className="text-3xl"
             />
           </button>
-          <button className="text-orange-500 hover:text-orange-600">
+          <button
+            className="text-orange-500 hover:text-orange-600"
+            onClick={() => navigate("/cart")}
+          >
             <FontAwesomeIcon
               icon={faCartShopping}
               // color="#ed7133"
@@ -106,42 +119,60 @@ const Header: React.FC = () => {
         <div className="bg-gray-900">
           <Search />
           <div>
-            <div className="flex flex-cols align-center gap-4    ">
-              <button className="text-xl text-orange-500 hover:text-orange-600">
-                Home
-              </button>
-              <hr />
-              <div className="dropdown">
-                <button className=" text-xl text-orange-500 ">
+            <div className="flex flex-col  gap-4   ml-[15px] ">
+              <div>
+                <button
+                  className="text-xl text-orange-500 hover:text-orange-600"
+                  onClick={() => navigate("/home")}
+                >
+                  Home
+                </button>
+              </div>
+              <div>
+                <button
+                  className=" text-2xl text-orange-500 "
+                  onClick={handledis1}
+                >
                   Pages <FontAwesomeIcon icon={faCaretDown} />
                 </button>
-                <div className=" dropdown-content ">
-                  <button className="text-lg p-[5px] border-b-2 border-whitesmoke">
-                    About Us
-                  </button>
-                  <button className="text-lg p-[5px] border-b-2 border-whitesmoke">
-                    Contact
-                  </button>
-                  <button className="text-lg p-[5px] border-b-2 border-whitesmoke">
-                    Terms and conditions
-                  </button>
-                  <button className="text-lg p-[5px] border-b-2 border-whitesmoke">
-                    FAQ
-                  </button>
-                </div>
+                {display ? (
+                  <div className="flex flex-col gap-4   ml-[15px]">
+                    <button className="text-xl text-orange-500 text-left p-[5px] ">
+                      About Us
+                    </button>
+                    <button className="text-xl text-orange-500 text-left p-[5px] ">
+                      Contact
+                    </button>
+                    <button className="text-xl text-orange-500 text-left p-[5px] ">
+                      Terms and conditions
+                    </button>
+                    <button className="text-xl text-orange-500 text-left p-[5px] ">
+                      FAQ
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
-              <div className="dropdown1">
-                <button className="text-xl text-orange-500 ">
+              <div>
+                <button
+                  className="text-2xl text-orange-500 "
+                  onClick={handledis2}
+                >
                   Shop <FontAwesomeIcon icon={faCaretDown} />
                 </button>
-                <div className=" dropdown-content1 ">
-                  <button className="text-lg p-[5px] border-b-2 border-whitesmoke">
-                    Shop
-                  </button>
-                  <button className="text-lg p-[5px] border-b-2 border-whitesmoke">
-                    Whislist
-                  </button>
-                </div>
+                {display1 ? (
+                  <div className="flex flex-col  gap-4   ml-[15px]">
+                    <button className="text-xl text-orange-500 text-left p-[5px] ">
+                      Shop
+                    </button>
+                    <button className="text-xl text-orange-500 text-left p-[5px] ">
+                      Whislist
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

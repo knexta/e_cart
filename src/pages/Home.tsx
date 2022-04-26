@@ -58,40 +58,40 @@ const Home: React.FC = () => {
   // };
   return (
     <div>
-      <h1 className="text-2xl font bold ml-[20px]">Categories</h1>
+      <h1 className="text-3xl font bold ml-[20px]">Categories</h1>
       <div className="flex flex-row flex wrap gap-3 ml-[15px]">
         <button
-          className="text-xl active:text-orange-500"
+          className="text-2xl active:text-orange-500"
           onClick={() => getProducts()}
         >
           All
         </button>
         <button
-          className="text-xl active:text-orange-500"
+          className="text-2xl active:text-orange-500"
           onClick={handleclick}
         >
           Desktops
         </button>
         <button
-          className="text-xl active:text-orange-500"
+          className="text-2xl active:text-orange-500"
           onClick={handleclick1}
         >
           Laptops
         </button>
         <button
-          className="text-xl active:text-orange-500"
+          className="text-2xl active:text-orange-500"
           onClick={handleclick2}
         >
           monitors
         </button>
         <button
-          className="text-xl active:text-orange-500"
+          className="text-2xl active:text-orange-500"
           onClick={handleclick3}
         >
           Tv
         </button>
         <button
-          className="text-xl active:text-orange-500"
+          className="text-2xl active:text-orange-500"
           onClick={handleclick4}
         >
           Tab
