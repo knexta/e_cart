@@ -4,6 +4,7 @@ import "./App.css";
 import Layout from "./components/Layout";
 import Auth from "./pages/Auth";
 import Cart from "./pages/Cart";
+import Forgotpassword from "./pages/Forgotpassword";
 import Home from "./pages/Home";
 import Products from "./pages/Product";
 import Whishlist from "./pages/Whishlist";
@@ -13,6 +14,7 @@ const App: React.FC = () => {
     <div className="App">
       <Routes>
         <Route path="/" element={<Auth />} />
+        <Route path="/forgotpassword" element={<Forgotpassword />} />
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/product/:id" element={<Products />} />

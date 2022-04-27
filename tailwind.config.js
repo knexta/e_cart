@@ -35,6 +35,9 @@ module.exports = {
         400: "#9ca3af",
         900: "#111827",
       },
+      pink: {
+        200: "#fbcfe8",
+      },
     },
     extend: {},
   },
