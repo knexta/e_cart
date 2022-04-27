@@ -11,7 +11,10 @@ const Home: React.FC = () => {
   const { loading, error, data } = useReactiveVar<productQueryRes>(productData);
   // const navigate = useNavigate();
   const [products, setproducts] = useState<Product[]>();
+  const [Active, setActive] = useState(0);
+
   function getProducts() {
+    setActive(0);
     return setproducts(data?.getAllProducts);
   }
   useEffect(getProducts, [data]);
@@ -20,28 +23,33 @@ const Home: React.FC = () => {
   if (error) return <h1>`Error! ${error.message}`</h1>;
   console.log(products);
   const handleclick = () => {
+    setActive(1);
     const desktop = allProduct?.filter(
       (product) => product.category === "Desktops"
     );
     setproducts(desktop);
   };
   const handleclick1 = () => {
+    setActive(2);
     const Laptop = allProduct?.filter(
       (product) => product.category === "Laptops"
     );
     setproducts(Laptop);
   };
   const handleclick2 = () => {
+    setActive(3);
     const monitor = allProduct?.filter(
       (product) => product.category === "monitors"
     );
     setproducts(monitor);
   };
   const handleclick3 = () => {
+    setActive(4);
     const tv = allProduct?.filter((product) => product.category === "Tv");
     setproducts(tv);
   };
   const handleclick4 = () => {
+    setActive(5);
     const tab = allProduct?.filter((product) => product.category === "Tab");
     setproducts(tab);
   };
@@ -50,38 +58,44 @@ const Home: React.FC = () => {
       <h1 className="text-3xl font bold ml-[20px]">Categories</h1>
       <div className="flex flex-row flex wrap gap-3 ml-[15px]">
         <button
-          className="text-2xl active:text-orange-500"
+          className="text-2xl active:text-orange-500 border-b "
+          style={{ borderBottomColor: Active === 0 ? "orange" : "white" }}
+          // active={active === "All"}
           onClick={() => getProducts()}
         >
           All
         </button>
         <button
-          className="text-2xl active:text-orange-500"
+          className="text-2xl active:text-orange-500 border-b "
+          style={{ borderBottomColor: Active === 1 ? "orange" : "white" }}
           onClick={handleclick}
         >
           Desktops
         </button>
         <button
-          className="text-2xl active:text-orange-500"
+          className="text-2xl active:text-orange-500 border-b"
+          style={{ borderBottomColor: Active === 2 ? "orange" : "white" }}
           onClick={handleclick1}
         >
           Laptops
         </button>
-
         <button
-          className="text-2xl active:text-orange-500"
+          className="text-2xl active:text-orange-500 border-b"
+          style={{ borderBottomColor: Active === 3 ? "orange" : "white" }}
           onClick={handleclick2}
         >
           monitors
         </button>
         <button
-          className="text-2xl active:text-orange-500"
+          className="text-2xl active:text-orange-500 border-b"
+          style={{ borderBottomColor: Active === 4 ? "orange" : "white" }}
           onClick={handleclick3}
         >
           Tv
         </button>
         <button
-          className="text-2xl active:text-orange-500"
+          className="text-2xl active:text-orange-500 border-b"
+          style={{ borderBottomColor: Active === 5 ? "orange" : "white" }}
           onClick={handleclick4}
         >
           Tab
@@ -97,10 +111,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-
-// function isActive() {
-//   let activebutton = document.getElementsByTagName("button");
-//   const container = document.getElementsByTagName("ul");
-//   // container.cla.add("active");
-//   container.addClass("active").siblings.removeClass("active");
-// }
