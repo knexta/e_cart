@@ -28,7 +28,7 @@ const Signin: React.FC = () => {
       }
     },
     onError: (error) => {
-      console.log(error);
+      toast(error.message);
     },
   });
 

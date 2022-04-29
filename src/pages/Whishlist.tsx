@@ -33,8 +33,8 @@ const WishList: React.FC = () => {
     refetchQueries: [getWhishlist],
   });
   const navigate = useNavigate();
-  const Whishlist = data?.getWishList;
-  console.log(Whishlist);
+  // const Whishlist = data?.getWishList;
+  // console.log(Whishlist);
   // if (error) return <div>{error.message}</div>;
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const WishList: React.FC = () => {
   if (loading) return <Spinner />;
 
   const handleclick = (id: number) => {
-    console.log(id);
+    // console.log(id);
     Delwishlist({ variables: { id: Number(id) } });
   };
   const handleClick1 = (id: number) => {

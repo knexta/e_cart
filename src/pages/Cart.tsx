@@ -6,7 +6,7 @@ import { getCart } from "../graphql/Queries";
 function Cart() {
   const { data } = useQuery(getCart);
   const navigate = useNavigate();
-  console.log(data);
+  // console.log(data);
   const user = localStorage.getItem("userId");
 
   useEffect(() => {

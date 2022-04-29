@@ -13,7 +13,7 @@ const Signup: React.FC = () => {
 
   const [Signup] = useMutation(signup, {
     onCompleted: (Signup) => {
-      const user = Signup.data?.createUser;
+      // const user = Signup.data?.createUser;
 
       toast("User Registered successfully");
       navigate("/");
@@ -21,7 +21,7 @@ const Signup: React.FC = () => {
   });
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(typeof email, typeof password, typeof name, typeof mobile);
+    // console.log(typeof email, typeof password, typeof name, typeof mobile);
     Signup({
       variables: {
         name: name,

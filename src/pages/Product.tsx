@@ -54,9 +54,9 @@ const Products = () => {
   }, [user, error]);
   if (loading) return <Spinner />;
 
-  console.log(typeof data, data);
+  // console.log(typeof data, data);
   const product = data?.getProduct;
-  console.log(product);
+  // console.log(product);
   //   console.log(typeof data);
   const handleAdd = () => {
     setquantity(quantity + 1);
@@ -73,8 +73,10 @@ const Products = () => {
     });
   };
   const handleClick1 = (id: number) => {
+    // console.log(quantity, user, id);
     Addtocart({
       variables: {
+        quantity: quantity,
         userId: Number(user),
         productId: Number(id),
       },
