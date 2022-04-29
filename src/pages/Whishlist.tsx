@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { removeWishlist } from "../graphql/Mutation";
 
+
 const WishList: React.FC = () => {
   const user = localStorage.getItem("userId");
   const { loading, error, data } = useQuery<whishlist>(getWhishlist, {
