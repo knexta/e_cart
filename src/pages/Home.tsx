@@ -6,19 +6,24 @@ import { Product, productQueryRes } from "../types/ProductTypes";
 import Spinner from "../utils/Spinner";
 import Card from "../components/Card";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Home: React.FC = () => {
   const user = localStorage.getItem("userId");
+  const { loading, error, data } = useReactiveVar<productQueryRes>(productData);
 
   useEffect(() => {
+    if (error) {
+      toast(error.message);
+      navigate("/");
+    }
     if (!user) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, error]);
 
   const navigate = useNavigate();
   // const { loading, error, data } = useQuery<Data>(getProducts);
-  const { loading, error, data } = useReactiveVar<productQueryRes>(productData);
   // const navigate = useNavigate();
   const [products, setproducts] = useState<Product[]>();
   const [Active, setActive] = useState(0);

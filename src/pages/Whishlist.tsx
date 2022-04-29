@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 import { getWhishlist } from "../graphql/Queries";
 import { whishlist } from "../types/ProductTypes";
 import Spinner from "../utils/Spinner";
+import { addToCart, addToWishlist } from "../graphql/Mutation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { removeWishlist } from "../graphql/Mutation";
 
 const WishList: React.FC = () => {
@@ -12,6 +15,13 @@ const WishList: React.FC = () => {
   const { loading, error, data } = useQuery<whishlist>(getWhishlist, {
     variables: {
       userId: Number(user),
+    },
+  });
+  const [Addtocart] = useMutation(addToCart, {
+    onCompleted: (Addtocart) => {
+      if (Addtocart) {
+        toast("Product added to Cart");
+      }
     },
   });
   const [Delwishlist] = useMutation(removeWishlist, {
@@ -30,17 +40,26 @@ const WishList: React.FC = () => {
   useEffect(() => {
     if (error) {
       toast(error.message);
+      navigate("/");
     }
     if (!user) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, error]);
 
   if (loading) return <Spinner />;
 
   const handleclick = (id: number) => {
     console.log(id);
     Delwishlist({ variables: { id: Number(id) } });
+  };
+  const handleClick1 = (id: number) => {
+    Addtocart({
+      variables: {
+        userId: Number(user),
+        productId: Number(id),
+      },
+    });
   };
   return data ? (
     <div className="p-[10px]">
@@ -58,6 +77,16 @@ const WishList: React.FC = () => {
                 return (
                   <>
                     <div className="p-[10px] relative">
+                      <button
+                        className="text-right w-full"
+                        onClick={() => handleClick1(product.id)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faCartShopping}
+                          // color="#ed7133"
+                          className="text-3xl text-rose-500"
+                        />{" "}
+                      </button>
                       <img
                         src={product.image}
                         alt={product.productName}
@@ -89,7 +118,7 @@ const WishList: React.FC = () => {
               })}
               <button
                 className="text-2xl p-[5px] bg-orange-500 text-black border border-black rounded-md"
-                onClick={() => handleclick(prod.productId)}
+                onClick={() => handleclick(prod.id)}
               >
                 Remove
               </button>

@@ -9,13 +9,7 @@ import { toast } from "react-toastify";
 
 const Card: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
-  // const [Addtocart] = useMutation(addToCart, {
-  //   onCompleted: (Addtocart) => {
-  //     if (Addtocart) {
-  //       toast("Product added to Cart");
-  //     }
-  //   },
-  // });
+
   const [Addtowishlist] = useMutation(addToWishlist, {
     onCompleted: (Addtowishlist) => {
       if (Addtowishlist) {
@@ -25,14 +19,7 @@ const Card: React.FC<{ product: Product }> = ({ product }) => {
   });
   const userId = localStorage.getItem("userId");
   // console.log(userId);
-  // const handleClick = (id: number) => {
-  //   Addtocart({
-  //     variables: {
-  //       userId: Number(userId),
-  //       productId: Number(id),
-  //     },
-  //   });
-  // };
+
   const handleClick = (id: number) => {
     Addtowishlist({
       variables: {

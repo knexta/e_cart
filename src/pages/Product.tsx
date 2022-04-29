@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../utils/Spinner";
 import { idparams } from "../types/ProductTypes";
 import Card from "../components/Card";
+import { toast } from "react-toastify";
 
 const Products = () => {
   const { id } = useParams<idparams>();
@@ -14,16 +15,20 @@ const Products = () => {
   const Id = Number(id);
   const user = localStorage.getItem("userId");
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, [user]);
   const { loading, error, data } = useQuery<oneData>(getProductsbyId, {
     variables: { id: Id },
   });
+  useEffect(() => {
+    if (error) {
+      toast(error.message);
+      navigate("/");
+    }
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, error]);
   if (loading) return <Spinner />;
-  if (error) return <h1>`Error! ${error.message}`</h1>;
+
   console.log(typeof data, data);
   const product = data?.getProduct;
   console.log(product);
