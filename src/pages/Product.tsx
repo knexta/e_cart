@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductsbyId } from "../graphql/Queries";
 import { oneData, oneProduct, Product } from "../types/ProductTypes";
 import { useQuery } from "@apollo/client";
@@ -9,8 +9,16 @@ import Card from "../components/Card";
 
 const Products = () => {
   const { id } = useParams<idparams>();
+  const navigate = useNavigate();
   const [quantity, setquantity] = useState(0);
   const Id = Number(id);
+  const user = localStorage.getItem("userId");
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user]);
   const { loading, error, data } = useQuery<oneData>(getProductsbyId, {
     variables: { id: Id },
   });

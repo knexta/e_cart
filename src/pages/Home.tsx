@@ -5,8 +5,18 @@ import { productData } from "../cache";
 import { Product, productQueryRes } from "../types/ProductTypes";
 import Spinner from "../utils/Spinner";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
+  const user = localStorage.getItem("userId");
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user]);
+
+  const navigate = useNavigate();
   // const { loading, error, data } = useQuery<Data>(getProducts);
   const { loading, error, data } = useReactiveVar<productQueryRes>(productData);
   // const navigate = useNavigate();
@@ -21,7 +31,7 @@ const Home: React.FC = () => {
   const allProduct = data?.getAllProducts;
   if (loading) return <Spinner />;
   if (error) return <h1>`Error! ${error.message}`</h1>;
-  console.log(products);
+  // console.log(products);
   const handleclick = () => {
     setActive(1);
     const desktop = allProduct?.filter(
@@ -53,6 +63,7 @@ const Home: React.FC = () => {
     const tab = allProduct?.filter((product) => product.category === "Tab");
     setproducts(tab);
   };
+
   return (
     <div>
       <h1 className="text-3xl font bold ml-[20px]">Categories</h1>

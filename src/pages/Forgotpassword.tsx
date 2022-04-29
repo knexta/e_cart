@@ -11,10 +11,10 @@ const Forgotpassword: React.FC = () => {
       <div className="container flex w-[100%]">
         <div className="w-[50%] flex flex-col justify-center items-center">
           <form onSubmit={(e) => handlesubmit(e)}>
-            <h1 className="text-2xl text-center">Forgot Password</h1>
+            <h1 className="text-3xl text-center">Forgot Password</h1>
             <input
               name="email"
-              className="text-2xl p-[5px] w-[100%] ml-[15px]  border my-[10px]"
+              className="text-2xl p-[5px] w-[95%] ml-[15px]  border my-[10px]"
               type="text"
               placeholder="Enter your email"
               value={email}

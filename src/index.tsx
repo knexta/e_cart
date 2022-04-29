@@ -6,9 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
+// const link = createHttpLink({
+//   uri: "http://localhost:5000/graphql",
+//   credentials: "same-origin",
+//   // Access-Control-Allow-Credentials: "true"
+// });
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql",
   cache: new InMemoryCache(),
+  // link,
+  credentials: "include",
 });
 
 const root = ReactDOM.createRoot(

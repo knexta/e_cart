@@ -54,3 +54,21 @@ export interface oneData {
 export type idparams = {
   id: string;
 };
+
+export type login = {
+  email: string;
+  id: string;
+  mobile: number;
+  name: string;
+};
+
+export interface whishlist {
+  getWishList: whisitems[];
+}
+
+export interface whisitems {
+  id: number;
+  userId: number;
+  productId: number;
+  productDetails: oneProduct[];
+}

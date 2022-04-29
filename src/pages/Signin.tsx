@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../graphql/Mutation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 toast.configure();
 
 const Signin: React.FC = () => {
@@ -12,30 +13,43 @@ const Signin: React.FC = () => {
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
   //   const [Login, loading, data] = useMutation();
-  const [Login, { data, error }] = useMutation(login, {
-    // onCompleted: (data) => console.log(data),
-    // onError: (error) => toast(error),
+  const [Login] = useMutation(login, {
+    onCompleted: (Login) => {
+      if (Login) {
+        // console.log(Login?.login);
+        const user = Login?.login;
+        // localStorage.setItem("user", user);
+        localStorage.setItem("name", user.name);
+        localStorage.setItem("userId", user.id);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("mobile", user.mobile);
+        // isLoggedIn(true);
+        navigate("/home");
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+    },
   });
+
+  // const { loading, error, data } = useReactiveVar<productQueryRes>(userDetail);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
     Login({
       variables: {
         email: email,
         password: password,
       },
     });
-    if (data !== undefined) {
-      console.log(data);
-      const user = JSON.stringify(data);
-      localStorage.setItem("USER", user);
-      navigate("/home");
-    }
+    // if (data !== undefined) {
+    //   console.log(data);
+    //   const user = JSON.stringify(data);
+    //   localStorage.setItem("USER", user);
+    //   navigate("/home");
+    // }
   };
-  if (error) {
-    console.log(error);
-    // toast(error);
-  }
 
   return (
     <div className="form-container sign-in-container flex flex-col justify-center items-center">

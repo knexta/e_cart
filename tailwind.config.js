@@ -38,6 +38,9 @@ module.exports = {
       pink: {
         200: "#fbcfe8",
       },
+      rose: {
+        500: "#f43f5e",
+      },
     },
     extend: {},
   },

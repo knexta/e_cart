@@ -40,3 +40,46 @@ export const getProductsbyId = gql`
     }
   }
 `;
+
+export const getCart = gql`
+  query Getcart($userId: Int!) {
+    getCart(userId: $userId) {
+      id
+      userId
+      productId
+      productDetails {
+        id
+        productName
+        price
+        discountPrice
+        category
+        image
+        description
+        overview
+        stocks
+      }
+      quantity
+    }
+  }
+`;
+
+export const getWhishlist = gql`
+  query GetWishList($userId: Int!) {
+    getWishList(userId: $userId) {
+      id
+      userId
+      productId
+      productDetails {
+        id
+        productName
+        price
+        discountPrice
+        category
+        image
+        description
+        overview
+        stocks
+      }
+    }
+  }
+`;

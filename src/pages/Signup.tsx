@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { signup } from "../graphql/Mutation";
 
 const Signup: React.FC = () => {
@@ -10,27 +11,26 @@ const Signup: React.FC = () => {
   const [mobile, setmobile] = useState("");
   const navigate = useNavigate();
 
-  const [Signup, { data }] = useMutation(signup, {
-    // onCompleted: (data) => console.log(data),
-    // onError: (error) => toast(error),
+  const [Signup] = useMutation(signup, {
+    onCompleted: (Signup) => {
+      const user = Signup.data?.createUser;
+
+      toast("User Registered successfully");
+      navigate("/");
+    },
   });
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(email, password);
+    console.log(typeof email, typeof password, typeof name, typeof mobile);
     Signup({
       variables: {
+        name: name,
         email: email,
         password: password,
-        name: name,
-        mobile: mobile,
+        mobile: parseFloat(mobile),
       },
     });
-    if (data) {
-      console.log(data);
-      const user = JSON.stringify(data);
-      localStorage.setItem("USER", user);
-      navigate("/");
-    }
+    // i
   };
   return (
     <div className="form-container sign-up-container flex flex-col justify-center items-center">
