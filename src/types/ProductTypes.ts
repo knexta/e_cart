@@ -72,3 +72,8 @@ export interface whisitems {
   productId: number;
   productDetails: oneProduct[];
 }
+
+export interface search {
+  search: string | undefined;
+  setSearch: React.Dispatch<React.SetStateAction<string | undefined>>;
+}

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { getWhishlist } from "../graphql/Queries";
 import { whishlist } from "../types/ProductTypes";
 import Spinner from "../utils/Spinner";
-import { addToCart, addToWishlist } from "../graphql/Mutation";
+import { addToCart } from "../graphql/Mutation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { removeWishlist } from "../graphql/Mutation";

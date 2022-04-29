@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 const Home: React.FC = () => {
   const user = localStorage.getItem("userId");
   const { loading, error, data } = useReactiveVar<productQueryRes>(productData);
+  console.log(!user, error);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (error) {
@@ -22,7 +24,6 @@ const Home: React.FC = () => {
     }
   }, [user, error]);
 
-  const navigate = useNavigate();
   // const { loading, error, data } = useQuery<Data>(getProducts);
   // const navigate = useNavigate();
   const [products, setproducts] = useState<Product[]>();

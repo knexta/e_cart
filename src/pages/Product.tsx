@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProductsbyId } from "../graphql/Queries";
+import { addToCart, addToWishlist } from "../graphql/Mutation";
 import { oneData, oneProduct, Product } from "../types/ProductTypes";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import Spinner from "../utils/Spinner";
 import { idparams } from "../types/ProductTypes";
 import Card from "../components/Card";
 import { toast } from "react-toastify";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Products = () => {
   const { id } = useParams<idparams>();
@@ -17,6 +20,28 @@ const Products = () => {
 
   const { loading, error, data } = useQuery<oneData>(getProductsbyId, {
     variables: { id: Id },
+  });
+  const [Addtowishlist] = useMutation(addToWishlist, {
+    onCompleted: (Addtowishlist) => {
+      if (Addtowishlist) {
+        toast("Product added to wishlist");
+      }
+    },
+    onError: (error) => {
+      toast(error.message);
+      navigate("/");
+    },
+  });
+  const [Addtocart] = useMutation(addToCart, {
+    onCompleted: (Addtocart) => {
+      if (Addtocart) {
+        toast("Product added to Cart");
+      }
+    },
+    onError: (error) => {
+      toast(error.message);
+      navigate("/");
+    },
   });
   useEffect(() => {
     if (error) {
@@ -39,6 +64,22 @@ const Products = () => {
   const handleSub = () => {
     setquantity(quantity - 1);
   };
+  const handleClick = (id: number) => {
+    Addtowishlist({
+      variables: {
+        userId: Number(user),
+        productId: Number(id),
+      },
+    });
+  };
+  const handleClick1 = (id: number) => {
+    Addtocart({
+      variables: {
+        userId: Number(user),
+        productId: Number(id),
+      },
+    });
+  };
   return (
     <div>
       {product?.map((product: oneProduct) => {
@@ -52,7 +93,16 @@ const Products = () => {
                 <img src={product.image} alt={product.productName} />
               </div>
               <div className="sm:w-[100%] md:w-[70%] pl-[10px]">
-                <h1 className="text-3xl ">{product.productName}</h1>
+                <div className="flex w-[100%] justify-between">
+                  <h1 className="text-3xl ">{product.productName}</h1>
+                  <button onClick={() => handleClick(product.id)}>
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      // color="#ed7133"
+                      className="text-3xl text-rose-500"
+                    />{" "}
+                  </button>
+                </div>
                 <h2 className="text-2xl text-black  p-[10px] m-[10px]">
                   ₹{product.price}
                   <span className=" line-through text-gray-400 indent-2">
@@ -103,7 +153,10 @@ const Products = () => {
                       -
                     </button>
                   </div>
-                  <button className="border bg-orange-500 text-white text-2xl p-[10px] rounded-full">
+                  <button
+                    onClick={() => handleClick1(product.id)}
+                    className="border bg-orange-500 text-white text-2xl p-[10px] rounded-full"
+                  >
                     Add to cart
                   </button>
                 </div>

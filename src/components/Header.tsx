@@ -13,11 +13,16 @@ import { Data } from "../types/ProductTypes";
 import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
-  const productRes = useQuery<Data>(getProducts);
+  const [search, setSearch] = useState<string | undefined>("");
   const [show, setshow] = useState(false);
   const [display, setdisplay] = useState(false);
   const [display1, setdisplay1] = useState(false);
   const navigate = useNavigate();
+  const productRes = useQuery<Data>(getProducts, {
+    variables: {
+      name: search,
+    },
+  });
   const handleclick = () => {
     setshow(!show);
   };
@@ -48,7 +53,7 @@ const Header: React.FC = () => {
         </div>
         <img src={logo} alt="" className=" h-[80px] w-[80px] " />
         <div className="hidden sm:block w-1/2">
-          <Search />
+          <Search search={search} setSearch={setSearch} />
         </div>
         <div className="hidden sm:block">
           <div className="flex align-center gap-4    ">
@@ -117,7 +122,7 @@ const Header: React.FC = () => {
       </div>
       {show ? (
         <div className="bg-gray-900">
-          <Search />
+          <Search search={search} setSearch={setSearch} />
           <div>
             <div className="flex flex-col  gap-4   ml-[15px] ">
               <div>

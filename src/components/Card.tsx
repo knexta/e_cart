@@ -1,8 +1,8 @@
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../types/ProductTypes";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useMutation } from "@apollo/client";
 import { addToCart, addToWishlist } from "../graphql/Mutation";
 import { toast } from "react-toastify";
