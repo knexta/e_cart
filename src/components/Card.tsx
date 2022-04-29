@@ -4,7 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../types/ProductTypes";
 import { useMutation } from "@apollo/client";
-import { addToCart, addToWishlist } from "../graphql/Mutation";
+import { addToWishlist } from "../graphql/Mutation";
 import { toast } from "react-toastify";
 
 const Card: React.FC<{ product: Product }> = ({ product }) => {
@@ -30,7 +30,10 @@ const Card: React.FC<{ product: Product }> = ({ product }) => {
   };
   return (
     <div
-      className="card w-[280px] h-[450px] rounded-xl flex flex-col gap-2 justify-center items-center bg-white shadow-md shadow-gray-400"
+      className="card w-[280px] h-[370px] rounded-xl flex flex-col gap-2 justify-center items-center bg-white shadow-md shadow-gray-400 hover:bg-gray-200"
+      onClick={() => {
+        navigate(`/product/${product.id}`);
+      }}
       key={product.id}
     >
       <div className="p-[10px] relative">
@@ -47,8 +50,8 @@ const Card: React.FC<{ product: Product }> = ({ product }) => {
         <img
           src={product.image}
           alt={product.productName}
-          height="130px"
-          width="230px"
+          height="100px"
+          width="200px"
         />
       </div>
       <div className="flex flex-col justify-center items-center">
@@ -59,14 +62,14 @@ const Card: React.FC<{ product: Product }> = ({ product }) => {
           </span>
           &nbsp; ${product.price}
         </p>
-        <button
+        {/* <button
           className="text-2xl p-[5px] bg-orange-500 text-black border border-black rounded-md"
           onClick={() => {
             navigate(`/product/${product.id}`);
           }}
         >
           View product
-        </button>
+        </button> */}
       </div>
     </div>
   );

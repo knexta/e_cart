@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { removeWishlist } from "../graphql/Mutation";
 
-
 const WishList: React.FC = () => {
   const user = localStorage.getItem("userId");
   const { loading, error, data } = useQuery<whishlist>(getWhishlist, {
@@ -46,9 +45,13 @@ const WishList: React.FC = () => {
     if (!user) {
       navigate("/");
     }
-  }, [user, error]);
+  }, [user, error, navigate]);
 
-  if (loading) return <Spinner />;
+  if (loading) {
+    <div className="flex items-center justify-center h-[50vh]">
+      <Spinner />
+    </div>;
+  }
 
   const handleclick = (id: number) => {
     // console.log(id);
@@ -65,19 +68,24 @@ const WishList: React.FC = () => {
   return data ? (
     <div className="p-[10px]">
       <h1 className="text-3xl font-semibold uppercase text-center text-orange-500">
-        Whishlist
+        Wishlist
       </h1>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 justify-items-center mt-4 gap-4 p-[20px]">
         {data?.getWishList?.map((prod) => {
           return (
             <div
-              className="card w-[280px] h-[450px] rounded-xl flex flex-col gap-2 justify-center items-center bg-white shadow-md shadow-gray-400"
+              className="card w-[280px] h-[370px] rounded-xl flex flex-col gap-2 justify-center items-center bg-white shadow-md shadow-gray-400 hover:bg-gray-200"
               key={prod.id}
             >
               {prod?.productDetails.map((product) => {
                 return (
                   <>
-                    <div className="p-[10px] relative">
+                    <div
+                      className="p-[10px] relative"
+                      onClick={() => {
+                        navigate(`/product/${product.id}`);
+                      }}
+                    >
                       <button
                         className="text-right w-full"
                         onClick={() => handleClick1(product.id)}
@@ -105,14 +113,14 @@ const WishList: React.FC = () => {
                         </span>
                         &nbsp; ${product.price}
                       </p>
-                      <button
+                      {/* <button
                         className="text-2xl p-[5px] bg-orange-500 text-black border border-black rounded-md"
                         onClick={() => {
                           navigate(`/product/${product.id}`);
                         }}
                       >
                         View product
-                      </button>
+                      </button> */}
                     </div>
                   </>
                 );
