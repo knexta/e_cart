@@ -52,3 +52,9 @@ export const removeWishlist = gql`
     deleteWishlist(id: $id)
   }
 `;
+
+export const removeCartItem = gql`
+  mutation DeleteCart($id: Int!){
+    deleteCart(id: $id)
+  }
+`;
