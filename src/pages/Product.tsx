@@ -51,8 +51,12 @@ const Products = () => {
     if (!user) {
       navigate("/");
     }
-  }, [user, error]);
-  if (loading) return <Spinner />;
+  }, [user, error, navigate]);
+  if (loading) {
+    <div className="flex items-center justify-center h-[70vh]">
+      <Spinner />
+    </div>;
+  }
 
   // console.log(typeof data, data);
   const product = data?.getProduct;
@@ -90,11 +94,15 @@ const Products = () => {
             <div className="flex flex-wrap p-[15px]">
               <div
                 key={product.id}
-                className="sm:w-[100%] md:w-[30%] bg-white shadow-sm shadow-gray-100"
+                className="sm:w-[100%] md:w-[45%] bg-white border-white shadow-sm shadow-gray-100"
               >
-                <img src={product.image} alt={product.productName} />
+                <img
+                  src={product.image}
+                  alt={product.productName}
+                  className="max-h-[500px] h-[100%]"
+                />
               </div>
-              <div className="sm:w-[100%] md:w-[70%] pl-[10px]">
+              <div className="sm:w-[100%] md:w-[55%] pl-[10px]">
                 <div className="flex w-[100%] justify-between">
                   <h1 className="text-3xl ">{product.productName}</h1>
                   <button onClick={() => handleClick(product.id)}>

@@ -22,7 +22,7 @@ const Home: React.FC = () => {
     if (!user) {
       navigate("/");
     }
-  }, [user, error]);
+  }, [user, error, navigate]);
 
   // const { loading, error, data } = useQuery<Data>(getProducts);
   // const navigate = useNavigate();
@@ -35,8 +35,14 @@ const Home: React.FC = () => {
   }
   useEffect(getProducts, [data]);
   const allProduct = data?.getAllProducts;
-  if (loading) return <Spinner />;
-  if (error) return <h1>`Error! ${error.message}`</h1>;
+  if (loading) {
+    <div className="flex items-center justify-center h-[50vh]">
+      <Spinner />
+    </div>;
+  }
+  if (error) {
+    toast(error.message);
+  }
   // console.log(products);
   const handleclick = () => {
     setActive(1);
