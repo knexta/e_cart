@@ -208,10 +208,18 @@
   color: #475569;
 }
 
+.text-properties1{
+  color: red;
+}
+
 .header-properties{
   background-color: #2479e1;
 }
 
 .wishlist-properties{
   color: rgb(211, 5, 5);
+}
+
+.cart{
+  border-radius: 20px;
 }

@@ -67,7 +67,7 @@ const WishList: React.FC = () => {
   };
   return data ? (
     <div className="p-[10px]">
-      <h1 className="text-3xl font-semibold uppercase text-center text-orange-500">
+      <h1 className="text-3xl font-bold text-center">
         Wishlist
       </h1>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3  sm:grid-cols-2 xs:grid-cols-1 justify-items-center mt-4 gap-4 p-[20px]">
@@ -99,19 +99,20 @@ const WishList: React.FC = () => {
                       <img
                         src={product.image}
                         alt={product.productName}
-                        height="130px"
-                        width="230px"
+                        height="100px"
+                        width="200px"
                       />
                     </div>
                     <div className="flex flex-col justify-center items-center">
-                      <p className="text-2xl text-black text-center">
+                      <p className="text-xl font-bold text-black text-center">
                         {product.productName}
                       </p>
-                      <p className="text-2xl text-black text-center p-[10px]">
-                        <span className=" line-through">
-                          ${product.price + product.discountPrice}
+                      <p className="text-2xl text-properties font-bold text-center p-[10px]">
+                        
+                        ₹{product.price} &nbsp; 
+                        <span className="text-properties1 text-lg line-through ">
+                        ₹{product.price + product.discountPrice}
                         </span>
-                        &nbsp; ${product.price}
                       </p>
                       {/* <button
                         className="text-2xl p-[5px] bg-orange-500 text-black border border-black rounded-md"
@@ -126,7 +127,7 @@ const WishList: React.FC = () => {
                 );
               })}
               <button
-                className="text-2xl p-[5px] bg-orange-500 text-black border border-black rounded-md"
+                className="text-xl font-semibold p-[7px] bg-orange-500 text-black border border-black rounded-md"
                 onClick={() => handleclick(prod.id)}
               >
                 Remove

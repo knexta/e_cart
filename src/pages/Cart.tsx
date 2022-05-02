@@ -44,21 +44,21 @@ function Cart() {
   return (
     <div>
       <div className="bg-white p-20">
-        <h1 className="text-center text-4xl text-orange-500 font-medium">Cart List</h1>
+        <h1 className="text-center text-3xl font-bold">Cart List</h1>
         <div>
           {data?.getCart.map((eachItem: any) => (
-            <div className="w-11/12 h-48 shadow-lg m-5 p-5 flex" key={eachItem.id}>
+            <div className="flex flex-row justify-between w-11/12 h-48 shadow-lg m-5 p-5 flex" key={eachItem.id}>
 
               <div className="flex cursor-pointer" onClick={() => {
                 navigate(`/product/${eachItem.productId}`);
               }}>
                 <img src={eachItem.productDetails[0].image} alt={eachItem.productDetails[0].productName} className="pl-5 w-36 h-36" />
                 <p className="text-bold pt-12 font-bold pl-10">{eachItem.productDetails[0].productName}</p>
-              </div>
-              <div className="pt-10 pl-80">
+              </div> 
+              <div className="pt-10 ">
                 <div>
                   <button
-                    className="text-2xl border border-gray-400 w-[35px] rounded-full m-[5px]"
+                    className="text-2xl border font-bold border-gray-400 w-[35px] rounded-full m-[5px]"
                     onClick={handleSub}
                     >
                       -
@@ -67,11 +67,11 @@ function Cart() {
                   <input
                     type="text"
                     value={eachItem.quantity}
-                    className="border text-center text-3xl border-gray-400 w-[50px]"
+                    className="border text-center font-semibold text-3xl border-gray-400 w-[50px]"
                     readOnly
                   />
                   <button
-                    className="text-2xl border border-gray-400 w-[35px] rounded-full m-[5px]"
+                    className="text-2xl border font-bold border-gray-400 w-[35px] rounded-full m-[5px]"
                     onClick={handleAdd}
                   >
                     +
@@ -79,7 +79,7 @@ function Cart() {
                 </div>
               </div>
               <div>
-                <FontAwesomeIcon icon={faXmark} className="pl-40 pt-14 text-left cursor-pointer" onClick={() => handleClick(eachItem.id)} />
+                <FontAwesomeIcon icon={faXmark} className="pr-8 pt-14 text-left cursor-pointer" onClick={() => handleClick(eachItem.id)} />
               </div>
 
             </div>

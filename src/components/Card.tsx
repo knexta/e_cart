@@ -55,12 +55,13 @@ const Card: React.FC<{ product: Product }> = ({ product }) => {
         />
       </div>
       <div className="flex flex-col justify-center items-center">
-        <p className="text-2xl text-black text-center">{product.productName}</p>
-        <p className="text-2xl text-black text-center p-[10px]">
-          <span className=" line-through">
-            ${product.price + product.discountPrice}
+        <p className="text-xl font-bold text-black text-center">{product.productName}</p>
+        <p className="text-2xl text-properties font-bold text-center p-[10px]">
+        ₹{product.price}
+          &nbsp;
+          <span className="text-properties1 text-lg line-through">
+          ₹{product.price + product.discountPrice}
           </span>
-          &nbsp; ${product.price}
         </p>
         {/* <button
           className="text-2xl p-[5px] bg-orange-500 text-black border border-black rounded-md"

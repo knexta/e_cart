@@ -66,7 +66,12 @@ const Products = () => {
     setquantity(quantity + 1);
   };
   const handleSub = () => {
-    setquantity(quantity - 1);
+    if(quantity>0){
+      setquantity(quantity - 1);
+    }else{
+      setquantity(0)
+    }
+    
   };
   const handleClick = (id: number) => {
     Addtowishlist({
@@ -91,10 +96,10 @@ const Products = () => {
       {product?.map((product: oneProduct) => {
         return (
           <>
-            <div className="flex flex-wrap p-[15px]">
+            <div className="flex flex-wrap p-[20px]">
               <div
                 key={product.id}
-                className="sm:w-[100%] md:w-[45%] bg-white border-white shadow-sm shadow-gray-100"
+                className="sm:w-[100%] md:w-[40%] bg-white border-white shadow-sm shadow-gray-100"
               >
                 <img
                   src={product.image}
@@ -102,40 +107,33 @@ const Products = () => {
                   className="max-h-[500px] h-[100%]"
                 />
               </div>
-              <div className="sm:w-[100%] md:w-[55%] pl-[10px]">
+              <div className="ml-5 sm:w-[100%] md:w-[55%] pl-[10px]">
                 <div className="flex w-[100%] justify-between">
                   <h1 className="text-3xl font-bold">{product.productName}</h1>
-                  <button onClick={() => handleClick(product.id)}>
-                    Add to wishlist
-                    <FontAwesomeIcon
-                      icon={faHeart}
-                      // color="#ed7133"
-                      className="text-3xl text-rose-500"
-                    />{" "}
-                  </button>
+                 
                 </div>
-                <h2 className="text-2xl text-black  p-[10px] m-[10px]">
-                  ₹{product.price}
-                  <span className=" line-through text-gray-400 indent-2">
+                <h2 className="text-2xl text-properties font-bold pt-[7px] m-[10px]">
+                  Rs.{product.price}/- &nbsp;
+                  <span className="text-properties1 text-lg line-through">
                     ₹{product.price + product.discountPrice}
                   </span>
                 </h2>
-                <h3 className="text-3xl text-gray-400 m-[10px]">Highlights</h3>
-                <ul className="list-disc text-2xl list-inside m-[10px]">
+                <h3 className="text-2xl font-bold mt-[20px]">Highlights</h3>
+                <ul className="list-disc text-xl list-inside m-[10px]">
                   {product?.overview?.map((data: string) => {
                     return <li>{data}</li>;
                   })}
                 </ul>
-                <h3 className="text-3xl text-gray-400">Description</h3>
-                <table className="table-auto   border-collapse md:w-3/4 sm:w-[100%] m-[10px]">
+                <h3 className="text-2xl font-bold mt-[20px]">Description</h3>
+                <table className="shadow-lg m-[10px] mb-10">
                   <tbody>
                     {product?.description?.map((prod) => {
                       return (
                         <tr>
-                          <td className="border border-black bg-gray-300 text-2xl ">
+                          <td className="p-1 pl-4 pr-10 border-b bg-gray-800 font-semibold ">
                             {prod[0]}
                           </td>
-                          <td className="border border-black bg-gray-200 text-2xl ">
+                          <td className="p-1 pl-4 pr-10 text-properties border-b bg-gray-800">
                             {prod[1]}
                           </td>
                         </tr>
@@ -146,29 +144,38 @@ const Products = () => {
                 <div className="flex">
                   <div>
                     <button
-                      className="text-2xl border border-gray-400 w-[35px] rounded-full m-[5px]"
-                      onClick={handleAdd}
-                    >
-                      +
-                    </button>
-                    <input
-                      type="text"
-                      value={quantity}
-                      className="border text-center text-3xl border-gray-400 w-[50px]"
-                      readOnly
-                    />
-                    <button
-                      className="text-2xl border border-gray-400 w-[35px] rounded-full m-[5px]"
+                      className="text-2xl font-bold border border-gray-400 w-[35px] rounded-full m-[5px]"
                       onClick={handleSub}
                     >
                       -
                     </button>
+                    <input
+                      type="text"
+                      value={quantity}
+                      className="border font-semibold text-center text-3xl border-gray-400 w-[50px]"
+                      readOnly
+                    />
+                    <button
+                      className="text-2xl font-bold border border-gray-400 w-[35px] rounded-full m-[5px]"
+                      onClick={handleAdd}
+                    >
+                      +
+                    </button>
+                      
                   </div>
                   <button
                     onClick={() => handleClick1(product.id)}
-                    className="border bg-orange-500 text-white text-2xl p-[10px] rounded-full"
+                    className="ml-5 auth mr-5 cart"
                   >
                     Add to cart
+                  </button>
+                  <button className="font-bold border-2 p-2 border-black cart" onClick={() => handleClick(product.id)}>
+                    Add to wishlist
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      // color="#ed7133"
+                      className="ml-2 text-2xl text-rose-500"
+                    />{" "}
                   </button>
                 </div>
               </div>
