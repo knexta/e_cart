@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Products = () => {
   const { id } = useParams<idparams>();
   const navigate = useNavigate();
-  const [quantity, setquantity] = useState(0);
+  const [quantity, setquantity] = useState(1);
   const Id = Number(id);
   const user = localStorage.getItem("userId");
 
@@ -66,12 +66,11 @@ const Products = () => {
     setquantity(quantity + 1);
   };
   const handleSub = () => {
-    if(quantity>0){
+    if (quantity > 0) {
       setquantity(quantity - 1);
-    }else{
-      setquantity(0)
+    } else {
+      setquantity(0);
     }
-    
   };
   const handleClick = (id: number) => {
     Addtowishlist({
@@ -82,14 +81,18 @@ const Products = () => {
     });
   };
   const handleClick1 = (id: number) => {
+    if (quantity === 0) {
+      toast("Quantity must not be Zero");
+    } else {
+      Addtocart({
+        variables: {
+          quantity: quantity,
+          userId: Number(user),
+          productId: Number(id),
+        },
+      });
+    }
     // console.log(quantity, user, id);
-    Addtocart({
-      variables: {
-        quantity: quantity,
-        userId: Number(user),
-        productId: Number(id),
-      },
-    });
   };
   return (
     <div>
@@ -110,7 +113,6 @@ const Products = () => {
               <div className="ml-5 sm:w-[100%] md:w-[55%] pl-[10px]">
                 <div className="flex w-[100%] justify-between">
                   <h1 className="text-3xl font-bold">{product.productName}</h1>
-                 
                 </div>
                 <h2 className="text-2xl text-properties font-bold pt-[7px] m-[10px]">
                   Rs.{product.price}/- &nbsp;
@@ -161,7 +163,6 @@ const Products = () => {
                     >
                       +
                     </button>
-                      
                   </div>
                   <button
                     onClick={() => handleClick1(product.id)}
@@ -169,7 +170,10 @@ const Products = () => {
                   >
                     Add to cart
                   </button>
-                  <button className="font-bold border-2 p-2 border-black cart" onClick={() => handleClick(product.id)}>
+                  <button
+                    className="font-bold border-2 p-2 border-black cart"
+                    onClick={() => handleClick(product.id)}
+                  >
                     Add to wishlist
                     <FontAwesomeIcon
                       icon={faHeart}
