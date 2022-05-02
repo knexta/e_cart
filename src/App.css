@@ -128,8 +128,8 @@
 
 .overlay {
   background: #2479e1;
-  background: -webkit-linear-gradient(to left,#ffffff, #2479e1 );
-  background: linear-gradient(to left,#95c8f4 ,#2479e1);
+  background: -webkit-linear-gradient(to left, #ffffff, #2479e1);
+  background: linear-gradient(to left, #95c8f4, #2479e1);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -204,22 +204,29 @@
   transform: scale(1.1);
 }
 
-.text-properties{
+.text-properties {
   color: #475569;
 }
 
-.text-properties1{
+.text-properties1 {
   color: red;
 }
 
-.header-properties{
+.header-properties {
   background-color: #2479e1;
 }
 
-.wishlist-properties{
+.wishlist-properties {
   color: rgb(211, 5, 5);
 }
 
-.cart{
+.cart {
   border-radius: 20px;
+}
+
+.card:hover .cardhide {
+  opacity: 0.3;
+}
+.card:hover .btn {
+  display: block;
 }
