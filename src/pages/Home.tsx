@@ -78,47 +78,47 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font bold ml-[20px]">Categories</h1>
-      <div className="flex flex-row flex wrap gap-3 ml-[15px]">
+      <h1 className="text-4xl mt-10 font-bold ml-[20px]">Categories</h1>
+      <div className="flex flex-row flex wrap gap-3 ml-[20px] mt-8">
         <button
-          className="text-2xl active:text-orange-500 border-b "
-          style={{ borderBottomColor: Active === 0 ? "orange" : "white" }}
+          className="text-2xl active:text-blue-500 border-b-4"
+          style={{ borderBottomColor: Active === 0 ? "#2479e1" : "white",  color: Active===0? "#2479e1": "black"}}
           // active={active === "All"}
           onClick={() => getProducts()}
         >
           All
         </button>
         <button
-          className="text-2xl active:text-orange-500 border-b "
-          style={{ borderBottomColor: Active === 1 ? "orange" : "white" }}
+          className="text-2xl active:text-blue-500 border-b-4 "
+          style={{ borderBottomColor: Active === 1 ? "#2479e1" : "white", color: Active===1? "#2479e1": "black" }}
           onClick={handleclick}
         >
           Desktops
         </button>
         <button
-          className="text-2xl active:text-orange-500 border-b"
-          style={{ borderBottomColor: Active === 2 ? "orange" : "white" }}
+          className="text-2xl active:text-blue-500 border-b-4"
+          style={{ borderBottomColor: Active === 2 ? "#2479e1" : "white", color: Active===2? "#2479e1": "black" }}
           onClick={handleclick1}
         >
           Laptops
         </button>
         <button
-          className="text-2xl active:text-orange-500 border-b"
-          style={{ borderBottomColor: Active === 3 ? "orange" : "white" }}
+          className="text-2xl active:text-blue-500 border-b-4"
+          style={{ borderBottomColor: Active === 3 ? "#2479e1" : "white", color: Active===3? "#2479e1": "black" }}
           onClick={handleclick2}
         >
           monitors
         </button>
         <button
-          className="text-2xl active:text-orange-500 border-b"
-          style={{ borderBottomColor: Active === 4 ? "orange" : "white" }}
+          className="text-2xl active:text-blue-500 border-b-4"
+          style={{ borderBottomColor: Active === 4 ? "#2479e1" : "white", color: Active===4? "#2479e1": "black" }}
           onClick={handleclick3}
         >
           Tv
         </button>
         <button
-          className="text-2xl active:text-orange-500 border-b"
-          style={{ borderBottomColor: Active === 5 ? "orange" : "white" }}
+          className="text-2xl active:text-blue-500 border-b-4"
+          style={{ borderBottomColor: Active === 5 ? "#2479e1" : "white", color: Active===5? "#2479e1": "black" }}
           onClick={handleclick4}
         >
           Tab

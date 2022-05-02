@@ -104,8 +104,9 @@ const Products = () => {
               </div>
               <div className="sm:w-[100%] md:w-[55%] pl-[10px]">
                 <div className="flex w-[100%] justify-between">
-                  <h1 className="text-3xl ">{product.productName}</h1>
+                  <h1 className="text-3xl font-bold">{product.productName}</h1>
                   <button onClick={() => handleClick(product.id)}>
+                    Add to wishlist
                     <FontAwesomeIcon
                       icon={faHeart}
                       // color="#ed7133"

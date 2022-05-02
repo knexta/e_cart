@@ -54,19 +54,22 @@ const Signin: React.FC = () => {
   return (
     <div className="form-container sign-in-container flex flex-col justify-center items-center">
       <form onSubmit={(e) => handleSubmit(e)}>
-        <h1 className="text-center font-bold m-0 text-2xl">Sign in</h1>
-        <h3 className="text-center text-xl">use your account for shopping</h3>
-        <div className="flex flex-col items-center">
+        <h3 className="text-center font-bold text-2xl mb-10">Login your account <br/> for shopping</h3>
+        <div className="pl-5">
+          <label htmlFor="email" className="pl-4 font-bold text-xs text-properties">EMAIL</label>
           <input
-            className="text-2xl p-[5px] w-[100%] ml-[15px] border my-[10px]"
+            id="email"
+            className="p-[5px] w-[90%] ml-[15px] border my-[10px]"
             type="email"
             value={email}
             onChange={(e) => setemail(e.target.value)}
             placeholder="Enter your Email"
             required
           />
+          <label htmlFor="password" className="pl-4 font-bold text-xs text-properties">PASSWORD</label>
           <input
-            className="text-2xl p-[5px] w-[100%] ml-[15px]  border my-[10px]"
+            id="password"
+            className="p-[5px] w-[90%] ml-[15px] border my-[10px]"
             type="password"
             value={password}
             onChange={(e) => setpassword(e.target.value)}
@@ -74,13 +77,15 @@ const Signin: React.FC = () => {
             required
           />
         </div>
-
-        <button type="submit" className=" auth">
+        <div className="text-center mt-5">
+        <button type="submit" className="auth">
           Sign In
         </button>
+        </div>
+        
       </form>
       <button
-        className=" mx-[15px] my=0 text-2xl"
+        className="mt-2"
         onClick={() => navigate("/forgotpassword")}
       >
         Forgot password?

@@ -24,7 +24,7 @@ const Auth: React.FC = () => {
               <p className="font-semibold text-lg tracking-widest leading-5 mt-[20px] ml-0 mb-[30px]">
                 To keep connected with us please login with your personal info
               </p>
-              <button className=" ghost" id="signIn" onClick={handleClick1}>
+              <button className="ghost" id="signIn" onClick={handleClick1}>
                 Sign In
               </button>
             </div>

@@ -12,22 +12,22 @@ const Search: React.FC<search> = ({ search, setSearch }) => {
   const handleSearch = () => {};
   return (
     // <div className="hidden sm:block  w-1/2">
-    <div className=" flex justify-center p-3 align-center h-[80px] w-full">
+    <div className="flex justify-center p-3 align-center h-[80px] w-full">
       <input
         type="search"
         id="mySearch"
         name="search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="border border-black text-2xl p-[10px] w-1/2  "
+        className="border border-black text-lg p-[5px] w-1/2 "
         placeholder="Search the product..."
       />
       <button
         onClick={handleSearch}
-        className="bg-orange-500 h-[56px] p-[10px]"
+        className="header-properties h-[56px]"
         type="submit"
       >
-        <FontAwesomeIcon icon={faSearch} className=" text-4xl" />
+        <FontAwesomeIcon icon={faSearch} className="text-2xl p-4 border border-black" />
       </button>
     </div>
     // </div>
